@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-
 export default function Home() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
   const logout = () => {
     localStorage.removeItem("loggedInUser");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -15,7 +14,14 @@ export default function Home() {
 
       <header className="home-header">
         <h2 className="logo">My Website</h2>
-        <button onClick={logout} className="logout-btn">Logout</button>
+
+        <div className="header-right">
+          <button onClick={logout} className="logout-btn">Logout</button>
+
+          <div className="avatar">
+            {user?.name?.charAt(0).toUpperCase()}
+          </div>
+        </div>
       </header>
 
       <section className="hero">
